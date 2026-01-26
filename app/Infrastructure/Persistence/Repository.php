@@ -4,9 +4,9 @@ namespace App\Infrastructure\Persistence;
 
 use App\Domains\Base\Entity;
 use App\Domains\Base\RepositoryInterface;
-use App\SharedKernels\Exceptions\Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 abstract class Repository implements RepositoryInterface
 {
@@ -19,11 +19,7 @@ abstract class Repository implements RepositoryInterface
 
     public function getByIdOrFail(int $id): Entity
     {
-        try {
-            return $this->getModel()->findOrFail($id);
-        } catch (\Exception $e) {
-            throw new Exception($e);
-        }
+        return $this->getModel()->findOrFail($id);
     }
 
     public function save(Entity $entity): Entity

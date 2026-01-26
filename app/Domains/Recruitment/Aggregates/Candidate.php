@@ -3,15 +3,14 @@
 namespace App\Domains\Recruitment\Aggregates;
 
 use App\Domains\Base\Entity;
-use App\Domains\Base\EventDispatcher;
 use App\Domains\Recruitment\Aggregates\Candidate\CandidateRelations;
 use App\Domains\Recruitment\Aggregates\Candidate\EmploymentHistory;
 use App\Domains\Recruitment\Events\Candidate\EmploymentHistoryAdded;
 use App\Domains\Recruitment\Events\Candidate\EmploymentHistoryRemoved;
 use App\Domains\Recruitment\Events\Candidate\EmploymentHistoryUpdated;
 use App\Domains\Recruitment\Factories\Candidates\EmploymentHistoryFactory;
-use App\SharedKernels\DTOs\Candidate\EmploymentHistoryDto;
-use App\SharedKernels\Exceptions\Exception;
+use app\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
+use App\SharedKernels\Events\Dispatcher;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Candidate extends Entity
@@ -23,7 +22,7 @@ class Candidate extends Entity
     {
         $emp = EmploymentHistoryFactory::createFrom($dto);
 
-        EventDispatcher::dispatch(new EmploymentHistoryAdded($emp));
+        Dispatcher::dispatch(new EmploymentHistoryAdded($emp));
 
         return $emp;
     }
@@ -32,7 +31,7 @@ class Candidate extends Entity
     {
         $emp = $this->employmentHistories()->where(EmploymentHistory::ID, $dto->id)->first();
 
-        if (!$emp) throw new Exception(__("Employment history not found."));
+        if (!$emp) throw new \Exception(__("Employment history not found."));
 
         $oldData = EmploymentHistoryDto::from($emp);
 
@@ -42,7 +41,7 @@ class Candidate extends Entity
 
         $newData = EmploymentHistoryDto::from($emp);
 
-        EventDispatcher::dispatch(new EmploymentHistoryUpdated($oldData, $newData));
+        Dispatcher::dispatch(new EmploymentHistoryUpdated($oldData, $newData));
 
         return $emp;
     }
@@ -51,10 +50,10 @@ class Candidate extends Entity
     {
         $emp = $this->employmentHistories()->where(EmploymentHistory::ID, $id)->first();
 
-        if (!$emp) throw new Exception(__("Employment history not found."));
+        if (!$emp) throw new \Exception(__("Employment history not found."));
 
         $this->deletingEntities->push($emp);
 
-        EventDispatcher::dispatch(new EmploymentHistoryRemoved($emp));
+        Dispatcher::dispatch(new EmploymentHistoryRemoved($emp));
     }
 }

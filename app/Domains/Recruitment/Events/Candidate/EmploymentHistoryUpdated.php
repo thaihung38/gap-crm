@@ -2,16 +2,15 @@
 
 namespace App\Domains\Recruitment\Events\Candidate;
 
-use App\Domains\Base\Event;
-use App\Domains\Recruitment\Aggregates\Candidate\EmploymentHistory;
-use App\SharedKernels\DTOs\Candidate\EmploymentHistoryDto;
+use App\Domains\Base\DomainEvent;
+use app\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
 
-class EmploymentHistoryUpdated extends Event
+class EmploymentHistoryUpdated extends DomainEvent
 {
     public function __construct(
         public EmploymentHistoryDto $old,
         public EmploymentHistoryDto $new
     ) {
-        parent::__construct();
+        parent::__construct($old, $new);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Applications\Orchestration\Handlers;
 
-use App\Domains\Base\Event;
+use App\Domains\Base\DomainEvent;
 
 interface EventHandler
 {
-    public function handler(Event $event): void;
+    public function handle(DomainEvent $event): void;
 }

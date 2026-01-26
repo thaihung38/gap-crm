@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SharedKernels\DTOs\Candidate;
+namespace app\SharedKernels\DTOs\Recruitment\Candidate;
 
 use App\SharedKernels\DTOs\Dto;
 use Spatie\LaravelData\Attributes\Validation\Rule;

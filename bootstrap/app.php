@@ -11,11 +11,17 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->append(\App\Http\Middlewares\AddGlobalProcessId::class);
     })
+    ->withCommands([
+        __DIR__.'/../app/Console/IAM',
+        __DIR__.'/../app/Console/Recruitment',
+    ])
     ->withEvents([
         __DIR__.'/../app/Domains/*/Listeners',
     ])
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->report(function (Throwable $e) {
+            \App\SharedKernels\Exceptions\ExceptionHandler::report($e);
+        });
     })->create();

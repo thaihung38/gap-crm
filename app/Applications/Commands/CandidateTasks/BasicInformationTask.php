@@ -4,7 +4,7 @@ namespace App\Applications\Commands\CandidateTasks;
 
 use App\Applications\Commands\Task;
 use App\Domains\Recruitment\Repositories\CandidateRepositoryInterface;
-use App\SharedKernels\DTOs\Candidate\CandidateDto;
+use app\SharedKernels\DTOs\Recruitment\Candidate\CandidateDto;
 use Illuminate\Support\Facades\DB;
 
 class BasicInformationTask extends Task

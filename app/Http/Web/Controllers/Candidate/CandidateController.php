@@ -9,8 +9,8 @@ use App\Http\Web\Controllers\Controller;
 use App\Http\Web\Requests\Candidate\AddEmploymentHistory;
 use App\Http\Web\Requests\Candidate\UpdateCandidate;
 use App\Http\Web\Resources\Error;
-use App\SharedKernels\DTOs\Candidate\CandidateDto;
-use App\SharedKernels\DTOs\Candidate\EmploymentHistoryDto;
+use app\SharedKernels\DTOs\Recruitment\Candidate\CandidateDto;
+use app\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

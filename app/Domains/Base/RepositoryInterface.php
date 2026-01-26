@@ -2,7 +2,7 @@
 
 namespace App\Domains\Base;
 
-use App\SharedKernels\Exceptions\Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 interface RepositoryInterface
 {
@@ -11,7 +11,7 @@ interface RepositoryInterface
     /**
      * @param int $id
      * @return Entity
-     * @throws Exception
+     * @throws ModelNotFoundException
      */
     public function getByIdOrFail(int $id): Entity;
 

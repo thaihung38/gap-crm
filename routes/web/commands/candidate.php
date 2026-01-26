@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix' => 'candidate',
 ], function ($router): void {
-    Route::get('list', [CandidateController::class, 'list']);
     Route::post('update', [CandidateController::class, 'update']);
 
     Route::group([

@@ -3,7 +3,6 @@
 namespace App\Domains\Base;
 
 use App\SharedKernels\DTOs\Dto;
-use App\SharedKernels\Exceptions\Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -43,7 +42,7 @@ abstract class Entity extends Model
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function validate(): void
     {

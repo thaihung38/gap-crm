@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Applications\Orchestration\EventRegistry;
+use App\Applications\Orchestration\CrossDomainEventRegistry;
+use App\Http\Middlewares\GlobalStore;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,8 +13,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->register(AnalyticsServiceProvider::class);
         $this->app->register(IAMServiceProvider::class);
         $this->app->register(RecruitmentServiceProvider::class);
+
+//        $this->app->singleton(GlobalStore::class, function () {
+//            return new GlobalStore();
+//        });
+
+        $this->app->bind('DispatcherAccessor', function () {
+            return $this->app->make(\App\SharedKernels\Events\DispatcherAccessor::class);
+        });
     }
 
     /**
@@ -21,6 +31,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        EventRegistry::register();
+        CrossDomainEventRegistry::register();
     }
 }
