@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Event;
 
 class AnalyticsListener
 {
+    // php artisan queue:work --stop-when-empty --queue=events,exceptions
     public static function listen(): void
     {
         array_map(function ($listener) {
@@ -14,5 +15,10 @@ class AnalyticsListener
             [
                 \App\Applications\Orchestration\Handlers\Analytics\LogEvent::class,
             ]);
+
+        Event::listen(
+            \App\SharedKernels\Exceptions\ExceptionEvent::class,
+            \App\Applications\Orchestration\Handlers\Analytics\LogException::class
+        );
     }
 }

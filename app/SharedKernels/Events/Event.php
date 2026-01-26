@@ -29,4 +29,9 @@ abstract class Event
         $this->eventId = Str::uuid7()->toString();
         $this->arguments = $args;
     }
+
+    public function toString(): string
+    {
+        return '';
+    }
 }

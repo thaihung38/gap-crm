@@ -11,6 +11,7 @@ use App\Http\Web\Requests\Candidate\UpdateCandidate;
 use App\Http\Web\Resources\Error;
 use app\SharedKernels\DTOs\Recruitment\Candidate\CandidateDto;
 use app\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
+use App\SharedKernels\Events\Dispatcher;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -42,8 +43,10 @@ class CandidateController extends Controller
             $this->basicInformationTask->update(CandidateDto::factory()->withoutValidation()->from($request));
 
             return new JsonResponse();
-        } catch (\Throwable $throwable) {
-            return new Error($throwable->getMessage(), $throwable->getCode());
+        } catch (\Throwable $e) {
+            Dispatcher::dispatchError($e);
+
+            return new Error($e->getMessage(), $e->getCode());
         }
     }
 
@@ -55,7 +58,9 @@ class CandidateController extends Controller
             return new JsonResponse([
                 'id' => $result->id
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
+            Dispatcher::dispatchError($e);
+
             return new Error($e->getMessage(), $e->getCode());
         }
     }

@@ -3,20 +3,16 @@
 namespace App\SharedKernels\Exceptions;
 
 use App\SharedKernels\Events\Event;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ExceptionEvent extends Event implements ShouldQueue
+class ExceptionEvent extends Event
 {
-    public string $connection = 'sqs';
-
-    public string $queue = 'exceptions';
-
-    public \Throwable $throwable;
-
-    public function __construct(\Throwable $throwable)
+    public function __construct(public \Throwable $throwable)
     {
-        $this->throwable = $throwable;
-
         parent::__construct($throwable);
+    }
+
+    public function toString(): string
+    {
+        return $this->throwable->getMessage() . PHP_EOL . $this->throwable->getTraceAsString();
     }
 }

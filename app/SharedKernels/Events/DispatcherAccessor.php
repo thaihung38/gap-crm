@@ -3,7 +3,7 @@
 namespace App\SharedKernels\Events;
 
 use App\Http\Middlewares\GlobalStore;
-use Illuminate\Support\Facades\Log;
+use App\SharedKernels\Exceptions\ExceptionEvent;
 
 class DispatcherAccessor
 {
@@ -13,12 +13,16 @@ class DispatcherAccessor
 
     public function dispatch(Event $event): void
     {
-        Log::info('process ' . $this->globalStore->processId . ' : ' . $event::class . ' ' .
-            $event->eventId . ' ' . $event->createdAt->format('Y-m-d H:i:s'));
-
         $event->processId = $this->globalStore->processId;
         event(new EventDispatched($event));
 
+        event($event);
+    }
+
+    public function dispatchError(\Throwable $e): void
+    {
+        $event = new ExceptionEvent($e);
+        $event->processId = $this->globalStore->processId;
         event($event);
     }
 }

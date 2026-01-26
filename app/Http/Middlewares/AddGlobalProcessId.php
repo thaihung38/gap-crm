@@ -9,9 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AddGlobalProcessId
 {
-    public function __construct(private GlobalStore $globalStore)
-    {
-    }
+    public function __construct(private GlobalStore $globalStore){}
 
     public function handle(Request $request, Closure $next): Response
     {

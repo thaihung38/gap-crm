@@ -21,7 +21,5 @@ return Application::configure(basePath: dirname(__DIR__))
         __DIR__.'/../app/Domains/*/Listeners',
     ])
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->report(function (Throwable $e) {
-            \App\SharedKernels\Exceptions\ExceptionHandler::report($e);
-        });
+        //
     })->create();

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $process_id
  * @property string $event_id
  * @property \DateTime $dispatch_time
+ * @property string $content
  */
 trait EventLogRelations
 {
@@ -23,6 +24,7 @@ trait EventLogRelations
         'process_id',
         'event_id',
         'dispatch_time',
+        'content',
     ];
 
     protected static function newFactory()

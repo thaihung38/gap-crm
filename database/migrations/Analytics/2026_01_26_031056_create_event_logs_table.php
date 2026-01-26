@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('process_id');
             $table->string('event_id');
             $table->dateTime('dispatch_time');
+            $table->text('content')->nullable();
 
             $table->index(['process_id', 'event_id']);
         });

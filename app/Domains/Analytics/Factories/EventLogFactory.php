@@ -5,10 +5,11 @@ namespace App\Domains\Analytics\Factories;
 use App\Domains\Analytics\Aggregates\EventLog;
 use App\Domains\Base\Factory;
 use App\SharedKernels\Events\EventDispatched;
+use App\SharedKernels\Exceptions\ExceptionEvent;
 
 class EventLogFactory extends Factory
 {
-    protected $model = \App\Domains\Analytics\Aggregates\EventLog::class;
+    protected $model = EventLog::class;
 
     public function definition(): array
     {
@@ -27,6 +28,18 @@ class EventLogFactory extends Factory
             'process_id' => $event->event->processId,
             'event_id' => $event->event->eventId,
             'dispatch_time' => $event->event->createdAt,
+            'content' => $event->event->toString(),
+        ]);
+    }
+
+    public function createFromException(ExceptionEvent $event): EventLog
+    {
+        return $this->create([
+            'fqdn' => $event::class,
+            'process_id' => $event->processId,
+            'event_id' => $event->eventId,
+            'dispatch_time' => $event->createdAt,
+            'content' => $event->toString(),
         ]);
     }
 }
