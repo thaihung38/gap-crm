@@ -1,10 +1,8 @@
 <?php
 
-namespace App\SharedKernels\Exceptions;
+namespace App\SharedKernels\Events;
 
-use App\SharedKernels\Events\Event;
-
-class ExceptionEvent extends Event
+class ErrorEvent extends Event
 {
     public function __construct(public \Throwable $throwable)
     {

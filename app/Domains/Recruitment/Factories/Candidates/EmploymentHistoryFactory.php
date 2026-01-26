@@ -4,7 +4,7 @@ namespace App\Domains\Recruitment\Factories\Candidates;
 
 use App\Domains\Base\Factory;
 use App\Domains\Recruitment\Aggregates\Candidate\EmploymentHistory;
-use app\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
+use App\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
 
 /**
  * @method EmploymentHistory createFrom(EmploymentHistoryDto $dto)

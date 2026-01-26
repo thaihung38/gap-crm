@@ -5,7 +5,7 @@ namespace App\Domains\Analytics\Factories;
 use App\Domains\Analytics\Aggregates\EventLog;
 use App\Domains\Base\Factory;
 use App\SharedKernels\Events\EventDispatched;
-use App\SharedKernels\Exceptions\ExceptionEvent;
+use App\SharedKernels\Events\ErrorEvent;
 
 class EventLogFactory extends Factory
 {
@@ -32,7 +32,7 @@ class EventLogFactory extends Factory
         ]);
     }
 
-    public function createFromException(ExceptionEvent $event): EventLog
+    public function createFromError(ErrorEvent $event): EventLog
     {
         return $this->create([
             'fqdn' => $event::class,

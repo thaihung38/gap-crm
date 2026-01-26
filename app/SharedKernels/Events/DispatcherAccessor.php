@@ -3,7 +3,6 @@
 namespace App\SharedKernels\Events;
 
 use App\Http\Middlewares\GlobalStore;
-use App\SharedKernels\Exceptions\ExceptionEvent;
 
 class DispatcherAccessor
 {
@@ -21,7 +20,7 @@ class DispatcherAccessor
 
     public function dispatchError(\Throwable $e): void
     {
-        $event = new ExceptionEvent($e);
+        $event = new ErrorEvent($e);
         $event->processId = $this->globalStore->processId;
         event($event);
     }

@@ -12,6 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->append(\App\Http\Middlewares\AddGlobalProcessId::class);
+        $middleware->alias([
+            'dispatchRequestEvent' => \App\Http\Middlewares\DispatchRequestEvent::class
+        ]);
     })
     ->withCommands([
         __DIR__.'/../app/Console/IAM',

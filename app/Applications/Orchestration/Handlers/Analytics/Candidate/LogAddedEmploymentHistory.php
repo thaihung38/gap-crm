@@ -6,7 +6,7 @@ use App\Applications\Orchestration\Handlers\EventHandler;
 use App\Domains\Analytics\Candidate\CandidateLogger;
 use App\Domains\Base\DomainEvent;
 use App\Domains\Recruitment\Events\Candidate\EmploymentHistoryAdded;
-use app\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
+use App\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
 
 class LogAddedEmploymentHistory implements EventHandler
 {

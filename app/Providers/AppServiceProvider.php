@@ -32,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         CrossDomainEventRegistry::register();
+
+        $this->loadRoutesFrom(__DIR__.'/../../routes/web/commands/test.php');
     }
 }

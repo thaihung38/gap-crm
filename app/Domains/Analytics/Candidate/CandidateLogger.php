@@ -2,8 +2,8 @@
 
 namespace App\Domains\Analytics\Candidate;
 
-use app\SharedKernels\DTOs\Recruitment\Candidate\CandidateDto;
-use app\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
+use App\SharedKernels\DTOs\Recruitment\Candidate\CandidateDto;
+use App\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
 
 class CandidateLogger
 {

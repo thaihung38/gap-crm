@@ -17,8 +17,8 @@ class AnalyticsListener
             ]);
 
         Event::listen(
-            \App\SharedKernels\Exceptions\ExceptionEvent::class,
-            \App\Applications\Orchestration\Handlers\Analytics\LogException::class
+            \App\SharedKernels\Events\ErrorEvent::class,
+            \App\Applications\Orchestration\Handlers\Analytics\LogError::class
         );
     }
 }

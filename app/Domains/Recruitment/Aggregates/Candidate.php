@@ -9,7 +9,7 @@ use App\Domains\Recruitment\Events\Candidate\EmploymentHistoryAdded;
 use App\Domains\Recruitment\Events\Candidate\EmploymentHistoryRemoved;
 use App\Domains\Recruitment\Events\Candidate\EmploymentHistoryUpdated;
 use App\Domains\Recruitment\Factories\Candidates\EmploymentHistoryFactory;
-use app\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
+use App\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
 use App\SharedKernels\Events\Dispatcher;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 

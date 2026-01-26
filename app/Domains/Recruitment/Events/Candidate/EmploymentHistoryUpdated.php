@@ -3,7 +3,7 @@
 namespace App\Domains\Recruitment\Events\Candidate;
 
 use App\Domains\Base\DomainEvent;
-use app\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
+use App\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
 
 class EmploymentHistoryUpdated extends DomainEvent
 {

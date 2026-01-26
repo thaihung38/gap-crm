@@ -6,7 +6,7 @@ use App\Applications\Commands\Metadata;
 use App\Applications\Commands\Task;
 use App\Domains\Recruitment\Aggregates\Candidate;
 use App\Domains\Recruitment\Repositories\CandidateRepositoryInterface;
-use app\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
+use App\SharedKernels\DTOs\Recruitment\Candidate\EmploymentHistoryDto;
 use Illuminate\Support\Facades\DB;
 
 class EmploymentHistoryTask extends Task
